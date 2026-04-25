@@ -11,10 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('person', function (Blueprint $table) {
-            // 'after' sirve para que visualmente quede antes de las fechas
-            $table->integer('status')->default(1)->after('last_name');
+        
+          Schema::create('person', function (Blueprint $table) {
+            $table->id();
+            // Agregamos ->index() aquí
+            $table->string('name')->index(); 
+            $table->string('last_name');
+            $table->integer('status')->default(1);
+            $table->timestamps();
         });
+    
     }
 
     /**
@@ -22,8 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('person', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('person');
     }
 };

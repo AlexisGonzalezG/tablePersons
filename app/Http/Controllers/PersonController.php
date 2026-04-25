@@ -14,6 +14,7 @@ class PersonController extends Controller
         $person = new Person;
         $person->name = $request->name;
         $person->last_name = $request->last_name;
+        $person->status = $request->status;
         $person->save();
  
         return response()->json(['message' => 'Person created successfully'], 201);//201 CREATED
